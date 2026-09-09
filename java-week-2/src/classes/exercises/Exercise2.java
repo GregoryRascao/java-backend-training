@@ -14,10 +14,33 @@ public class Exercise2
     public static void main(String[] args)
     {
         // TODO: Create Person objects using both constructors
+        Person person1 = new Person(); // default
+        Person person2 = new Person("greg", 10);
+
+        System.out.println("default person :" + person1.name + " " + person1.age);
+        System.out.println("person 2 :" + person2.name + " " + person2.age);
     }
 
     Exercise2() {
 
+    }
+}
+
+/**
+ * Person
+ */
+class Person{
+    String name;
+    int age;
+
+    Person(){
+        this.name = "default";
+        this.age = 31;
+    }
+
+    Person(String name, int age){
+        this.name = name;
+        this.age = age;
     }
 }
 

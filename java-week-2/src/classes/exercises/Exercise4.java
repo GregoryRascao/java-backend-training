@@ -13,6 +13,31 @@ public class Exercise4
 {
     public static void main(String[] args)
     {
-        // TODO: Implement all requirements and test them
+        Cat cat1 = new Cat();
+        cat1.Sleep();
+        cat1.sound();
+
+        MathUtil mat = new MathUtil();
+        System.out.println("Square method :" + mat.square(2));
+    }
+}
+
+abstract class Animal{
+    abstract void sound();
+    void Sleep(){
+        System.out.println("il dort");
+    }
+}
+
+class Cat extends Animal{
+    @Override
+    void sound(){
+        System.out.println("the cat says..");
+    }
+}
+
+class MathUtil{
+    int square(int number){
+        return number * number;
     }
 }
