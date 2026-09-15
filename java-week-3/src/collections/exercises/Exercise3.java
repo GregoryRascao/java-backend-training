@@ -13,39 +13,17 @@ import java.util.Map;
 public class Exercise3 {
     public static void main(String[] args) {
         Map<String, String> phoneBook = new HashMap<>();
-        phoneBook.put("Bora", "123456798");
-        phoneBook.put("Kien", "987654321");
-        phoneBook.put("Carles", "654321354");
 
+        phoneBook.put("Paul", "01231030");
+        phoneBook.put("Ali", "01232543");
+        phoneBook.put("Charlotte", "04365743");
 
-        String myPhoneNumber = phoneBook.get("Bora");
+        System.out.println("let's print entries :" + phoneBook);
 
-        System.out.println(myPhoneNumber);
+        String aliNumber = phoneBook.get("Ali");
+        System.out.println("Ali's number is :" + aliNumber);
 
-        phoneBook.remove("Bora");
-
-
-        printMap(phoneBook);
+        phoneBook.remove("Ali");
+        System.out.println("Phone after delete :" + phoneBook);
     }
-
-    public static void printMap(Map<String, String> basel) {
-        System.out.println("Writing with keySet and enhanced loop");
-        for(String key : basel.keySet()) {
-            System.out.print( basel.get(key) + " ");
-        }
-        System.out.println();
-        System.out.println("Writing with entrySet and enhanced loop");
-        for(Map.Entry<String, String> entry : basel.entrySet()) {
-            System.out.println(entry.getKey() + " = " + entry.getValue());
-        }
-        System.out.println("Writing with forEach and lambda function");
-        basel.forEach((key, value) -> System.out.println(key + "'s phone number is: " + value));
-        System.out.println("Writing with toString method of Map");
-        System.out.println(basel);
-        System.out.println("Writing the values");
-        for (String value : basel.values()) {
-            System.out.println("value: " + value);
-        }
-    }
-
 }
