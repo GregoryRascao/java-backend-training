@@ -10,5 +10,31 @@ package encapsulation.exercises;
  */
 public class Employee
 {
-    // your code here
+    private String name;
+    private double salary;
+
+
+    Employee(String name, double salary){
+        this.name = name;
+        this.salary = salary;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public double getSalary(){
+        return salary;
+    }
+
+    public void setSalary(double salary){
+        if(salary < 0) throw new IllegalArgumentException("Salary cannot be negative.");
+    }
+
+    public void giveRaise( double amount){
+        if (amount < 0) {
+            throw new IllegalArgumentException("Raise cannot be negative.");
+        }
+        this.salary += amount;
+    }
 }
