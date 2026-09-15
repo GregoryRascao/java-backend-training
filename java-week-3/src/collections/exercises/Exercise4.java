@@ -43,7 +43,7 @@ public class Exercise4 {
     }
 
     public static void printGrades(Map<String, List<Integer>> grades) {
-        for (Map.entry<String, List<Integer>> student : grades.entrySet()) {
+        for (Map.Entry<String, List<Integer>> student : grades.entrySet()) {
             System.out.println(student.getKey() + " has notes " + student.getValue());
         }
     }

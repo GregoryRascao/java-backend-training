@@ -2,6 +2,7 @@ package collections.exercises;
 
 import java.util.List;
 import java.util.Set;
+import java.util.HashSet;
 
 /**
  * 1. Create a Set<String> cities.
