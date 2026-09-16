@@ -1,18 +1,18 @@
 package projects.project4;
 
 public class User {
-    private Cart cart;
+
+    private final Cart cart;
+
+    User() {
+        cart = new Cart();
+    }
 
     User(Cart cart) {
-        this.setCart(cart);
+        this.cart = cart;
     }
-
 
     public Cart getCart() {
-        return cart;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
+        return this.cart;
     }
 }
