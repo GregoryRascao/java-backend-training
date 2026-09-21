@@ -32,6 +32,7 @@ public class Book {
         return author;
     }
 
+    // TODO faire fonctionner le TODO
     @Override
     public boolean equals(Object object) {
         if (this == object) {
