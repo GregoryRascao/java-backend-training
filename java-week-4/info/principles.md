@@ -12,6 +12,7 @@ In this week, we focus on:
 
 * **S** — Single Responsibility Principle
 * **O** — Open/Closed Principle
+* **I** — Interface Segregation Principle
 * **D** — Dependency Inversion Principle
 
 ---
@@ -130,6 +131,73 @@ public class SeniorDiscount implements DiscountStrategy {
 
 Now we can add a new discount by creating a new class.
 We do not modify existing code 
+
+---
+
+# I — Interface Segregation Principle (ISP)
+
+> Clients should not be forced to depend on methods they do not use.
+
+This means we should keep our interfaces small and focused, instead of creating one large interface that forces every implementing class to provide methods it doesn't actually need.
+
+---
+
+### Bad Example
+
+```java
+public interface AnimalAbilities {
+    void fly();
+    void swim();
+    void run();
+    void climb();
+}
+```
+
+If we implement this interface, we are forced to write a body for every method — even for abilities our animal doesn't have. A `Horse` would be forced to implement `fly()` and `swim()`, even though a horse can't do either.
+
+---
+
+### Better Design (Segregated Interfaces)
+
+```java
+public interface Flyable {
+    void fly();
+}
+
+public interface Swimmable {
+    void swim();
+}
+
+public interface MyRunnable {
+    void run();
+}
+```
+
+Now each class implements only the abilities it actually has:
+
+```java
+public class Duck implements Flyable, Swimmable, MyRunnable {
+    public void fly() { }
+    public void swim() { }
+    public void run() { System.out.println("running DUCK!"); }
+}
+
+public class Hawk implements Flyable {
+    public void fly() { System.out.println("Hawk flies"); }
+}
+
+public class Horse implements MyRunnable {
+    public void run() { System.out.println("Horse running"); }
+}
+```
+
+We can find this exact example in `src/interfaces/examples/zoo`, where `AnimalAbilities` shows the bad, "fat" interface, and `Flyable`, `Swimmable`, and `MyRunnable` show how we segregate it into small, focused interfaces that classes like `Duck`, `Hawk`, and `Horse` combine as needed.
+
+Now:
+
+* Each class only implements the abilities it needs
+* We avoid empty or unsupported method bodies
+* Our interfaces stay small, focused, and easy to combine
 
 ---
 
@@ -266,11 +334,8 @@ Testing will make much more sense once we start writing unit tests.
 
 * **S** → One responsibility per class
 * **O** → Extend behavior without modifying existing code
+* **I** → Keep interfaces small and focused, don't force unused methods on classes
 * **D** → Depend on abstractions, not concrete classes
 * Separation of Concerns → Keep responsibilities separated
 * Tight coupling → Avoid
 * Loose coupling → Prefer
-
----
-
-If you want, I can also add a small "Week 4 Mini Exercise" section at the end as an assignment for students.

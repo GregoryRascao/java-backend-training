@@ -81,7 +81,7 @@ public class IteratorExample
 {
     public static void main(String[] args) 
     {
-        List<String> names = new ArrayList<>(List.of("Alice", "Bob", "Charlie", "David"));
+        List<String> names = new ArrayList<>(List.of("Samira", "Gayatri", "Chitra", "Mila"));
         Iterator<String> it = names.iterator();
 
         while (it.hasNext()) 
@@ -89,7 +89,7 @@ public class IteratorExample
             String name = it.next();
             System.out.println("Processing: " + name);
 
-            if (name.equals("Charlie")) 
+            if (name.equals("Chitra")) 
             {
                 it.remove(); // Safe removal during iteration
             }
@@ -139,7 +139,7 @@ public class ForEachLambdaExample
 ### ✅ For Each Entry
 
 ```java
-Map<String, Integer> ages = Map.of("Alice", 25, "Bob", 30, "Charlie", 22);
+Map<String, Integer> ages = Map.of("Samira", 25, "Gayatri", 30, "Chitra", 22);
 
 for (Map.Entry<String, Integer> entry : ages.entrySet()) 
 {
@@ -181,10 +181,10 @@ while (it.hasNext())
 
 ## 💡 7. Best Practices
 
-✅ Use **for-each** for simple reading or printing.
-✅ Use **Iterator** when you need to **remove elements safely** while iterating.
-✅ Use **forEach()** (lambda) for **modern, clean, and functional code**.
-✅ Avoid modifying a collection directly during a for-each — it causes a `ConcurrentModificationException`.
+- ✅ Use **for-each** for simple reading or printing.
+- ✅ Use **Iterator** when you need to **remove elements safely** while iterating.
+- ✅ Use **forEach()** (lambda) for **modern, clean, and functional code**.
+- ✅ Avoid modifying a collection directly during a for-each — it causes a `ConcurrentModificationException`.
 
 ---
 

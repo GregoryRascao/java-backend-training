@@ -85,7 +85,7 @@ class Laborer {
     private Door door;
     private Paint paint;
 
-    public Laborer(Door door, Paint paint) {
+    public Laborer(Door door, Paint paint) {    // dependency injection
         this.door = door;
         this.paint = paint;
     }
@@ -116,7 +116,8 @@ class Laborer {
 public class HouseClient {
     public static void main(String[] args) {
 
-        //There are different types of paint and doors, they are interchangable, they are decided on runtime, this is Strategy pattern
+        //There are different types of paint and doors,
+        // they are interchangable, they are decided on runtime, this is Strategy pattern
 
         WoodenDoor wd = new WoodenDoor();
         wd.setWidth(10);
