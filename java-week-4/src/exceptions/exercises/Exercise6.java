@@ -9,6 +9,8 @@ package exceptions.exercises;
  */
 public class Exercise6 {
     public static void main(String[] args) {
-        
+        String texString = "10\n25\nabc\n40\nhello\n5";
+        int sum = 0;
+
     }
 }

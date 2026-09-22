@@ -10,6 +10,23 @@ import java.util.*;
  */
 public class Exercise3
 {
+    static void main(String[] args) {
+        Set<String> names =  new HashSet<>(Arrays.asList("Ali", "Sara", "Lina", "Amir", "Sami"));
+
+        Iterator<String> iterator = names.iterator();
+        iterator.next();
+
+        System.out.println("Before " + names);
+        while (iterator.hasNext())
+        {
+            String name = iterator.next();
+            if(name.startsWith("A")){
+                iterator.remove();
+            }
+        }
+
+        System.out.print("after " + names);
+    }
 
 }
 

@@ -9,5 +9,23 @@ import java.util.*;
  */
 public class Exercise5
 {
+    static void main(String[] args) {
+        List<String> words  = new ArrayList<>(Arrays.asList("hello", "my", "name", "is", "Gregory", "Rascao", "and", "you", "?"));
 
+        ListIterator<String> iterator = words.listIterator();
+        System.out.println("Before " + iterator);
+        while(iterator.hasNext())
+        {
+            String word = iterator.next();
+            if(word.length() > 4){
+                iterator.set(word.toUpperCase());
+            }
+        }
+        System.out.println("After " + words);
+
+        while(iterator.hasPrevious()){
+            String word = iterator.previous();
+            System.out.println("backwards " + words);
+        }
+    }
 }
