@@ -29,6 +29,9 @@ interface Payment
     static void paymentInfo() {
         System.out.println("Payments can be done online or offline.");
     }
+
+    // default methods belong to an instance and can be overridden by implementing classes (called via p.showReceipt())
+    // static methods belong to the interface itself, cannot be overridden, and are called via Payment.paymentInfo()
 }
 
 class CreditCardPayment implements Payment
