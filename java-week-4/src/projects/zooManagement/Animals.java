@@ -15,6 +15,8 @@ public abstract class Animals {
 
 class zooManagement {
     public static void main(String[] args) {
-        List<Animals> animal = new ArrayList<>();
+        List<Animals> animals = new ArrayList<>();
+
+        
     }
 }
