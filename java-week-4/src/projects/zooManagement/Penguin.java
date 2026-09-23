@@ -1,6 +1,6 @@
 package projects.zooManagement;
 
-public  class Penguin extends Animal{
+public  class Penguin extends Animals{
     @Override
     void makeSound() {
         System.out.println("The Penguin make that sound: unkknown..");
