@@ -1,6 +1,6 @@
-package projects.project4;
+package projects.project8;
 
-import projects.project4.device.Device;
+import projects.project8.device.Device;
 
 import java.util.Objects;
 //This is the first choice for validating the device

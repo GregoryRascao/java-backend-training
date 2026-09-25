@@ -1,4 +1,4 @@
-package projects.project4.device;
+package projects.project8.device;
 
 public interface Adjustable {
 
