@@ -14,7 +14,7 @@ public record Example7Person(int age, String name) {
         }
     }
 
-    // Getters are allowed because they don't break imutability
+    // Getters are allowed because they don't break immutability
     public String getSurname() {
         String[] s = this.name.split(" ");
         return s[s.length-1];

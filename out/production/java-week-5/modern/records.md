@@ -22,17 +22,6 @@ With one line, Java automatically creates:
 
 ---
 
-## `final` or Immutable?
-
-A record is actually both, but these two words mean different things:
-
-- **`final`**: we cannot extend a record. A record class can never be a parent class.
-- **immutable**: once we create a record, we cannot change its data. There are no setters, and every field is `final`.
-
-Note: this only protects the fields themselves. If a component is a mutable type, like a `List`, we can still change what is inside it.
-
----
-
 ## Why Use Records?
 
 Use records when your class mainly stores data.

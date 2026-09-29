@@ -8,7 +8,7 @@ package modern.examples;
 
 public class Example5
 {
-    /*
+
     sealed interface Shape permits Circle, Rectangle
     {
     }
@@ -62,6 +62,6 @@ public class Example5
         System.out.println("Circle area: " + area(shape1));
         System.out.println("Rectangle area: " + area(shape2));
     }
-*/
+
 
 }

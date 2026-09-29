@@ -13,6 +13,12 @@ public class Example4
         private final int age;
         private final boolean active;
 
+        public User(String name, int age, boolean active) {
+            this.name = name;
+            this.active = active;
+            this.age = age;
+        }
+
         private User(Builder builder)
         {
             this.name = builder.name;
@@ -57,8 +63,8 @@ public class Example4
         }
     }
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
+
         User user = new User.Builder()
                 .name("Student")
                 .age(35)

@@ -1,6 +1,7 @@
 package generics.exercises;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -34,31 +35,36 @@ public class Exercise2 {
     public static void main(String[] args) {
         System.out.println("=== Task 1: Print Array ===\n");
 
-        // TODO Call printArray method
+        // Call printArray method
         String[] words = { "Hello", "World", "Java" };
         Integer[] numbers = { 1, 2, 3, 4, 5 };
         printArray(words);
         printArray(numbers);
 
+        // Call reverse method
         System.out.println("\n=== Task 2: Reverse Array ===\n");
+        Integer[] reversedNumbers = reverse(numbers);
+        printArray(reversedNumbers);
 
-        // TODO: Call reverse method
+        // Call findMin method
         System.out.println("\n=== Task 3: Find Minimum ===\n");
 
-        // TODO: Call findMin method
         List<Integer> integers = new ArrayList<>();
         integers.add(10);
         integers.add(5);
         integers.add(20);
         integers.add(3);
+        System.out.println("Minimum integer :" + findMin(integers));
 
         System.out.println("\n=== Task 4: Calculator ===\n");
-
-        // TODO: Create and use Calculator instances
+        // Create and use Calculator instances
+        Calculator<Integer> integerCalcul = new Calculator(12, 2);
+        System.out.println("Calculate this :" + integerCalcul.add());
 
         System.out.println("\n=== Task 5: Count Greater Than ===\n");
-
-        // TODO: Call countGreaterThan method
+        // Call countGreaterThan method
+        System.out.println(countGreaterThan(numbers, 9));
+        System.out.println(countGreaterThan(words, "kikoulapraline"));
 
     }
 
@@ -69,15 +75,64 @@ public class Exercise2 {
         }
     }
 
-    // TODO: Task 2 - Implement reverse method
-    public static <T> void reverse(T[] array){
-        
+    // Task 2 - Implement reverse method
+    public static <T> T[] reverse(T[] array) {
+        T[] reversed = Arrays.copyOf(array, array.length);
+        for (int i = 0; i < reversed.length; i++) {
+            reversed[i] = array[array.length - 1 - i];
+        }
+        return reversed;
+
     }
 
-    // TODO: Task 3 - Implement: <T extends Number> double findMin(List<T> numbers)
+    // Task 3 - Implement: <T extends Number> double findMin(List<T> numbers)
+    public static <T extends Number> double findMin(List<T> numbers) {
+        double minimum = numbers.get(0).doubleValue();
+        for (T t : numbers) {
+            minimum = Math.min(minimum, t.doubleValue());
+        }
 
-    // TODO: Task 5 - Implement countGreaterThan method
+        return minimum;
+    }
 
+    // Task 5 - Implement countGreaterThan method
+    public static <T extends Comparable<T>> int countGreaterThan(T[] array, T element) {
+        int count = 0;
+
+        for (T value : array) {
+            if (value.compareTo(element) > 0) {
+                count++;
+            }
+        }
+
+        return count;
+    }
 }
 
-// TODO: Task 4 - Create Calculator<T extends Number> class here
+// Task 4 - Create Calculator<T extends Number> class here
+class Calculator<T extends Number> {
+    T first;
+    T second;
+
+    public Calculator(T first, T second) {
+        this.first = first;
+        this.second = second;
+    }
+
+    public double add() {
+        return first.doubleValue() + second.doubleValue();
+    }
+
+    public double remove() {
+        return first.doubleValue() - second.doubleValue();
+    }
+
+    public double multiply() {
+        return first.doubleValue() * second.doubleValue();
+    }
+
+    public double divide() {
+        return first.doubleValue() / second.doubleValue();
+    }
+
+}

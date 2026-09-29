@@ -29,7 +29,7 @@ public class Example3
 
         printer.print("Hello from anonymous class!");
 
-        String[] names = {"Ali", "Christopher", "Mia", "Jo"};
+        String[] names = {"Gayatri", "Paul", "Alize", "Nikita"};
         Arrays.sort(names, new Comparator<String>()
         {
             @Override

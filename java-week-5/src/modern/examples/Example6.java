@@ -21,6 +21,7 @@ public class Example6
         System.out.println("Name: " + firstStudent.name());
         System.out.println("Age: " + firstStudent.age());
         System.out.println("Student: " + firstStudent);
+
         System.out.println("Equal objects: " + firstStudent.equals(secondStudent));
     }
 }
