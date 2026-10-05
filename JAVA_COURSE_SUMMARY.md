@@ -1,8 +1,10 @@
 # Java Course Summary
 
-This document is a study guide for the Java material currently available in this repository. It covers the first four weeks of the course and is designed to be used as a reference when reviewing a concept or debugging an exercise.
+This document is a teaching support for the Java course available in this repository. It follows the material actually present in the workspace and is intended to help students understand, review, and apply the concepts covered in each week.
 
-The best way to use this guide is to read a section, open the matching examples, and then solve the related exercise without looking at the solution.
+It is not a roadmap for future weeks that are not present here: it is a study companion for the specific Java modules included in this repository.
+
+The best way to use this guide is to read a section, study the example, try the related exercise, and then revisit the concept when a bug or misunderstanding appears.
 
 ## Course Progression
 
@@ -12,6 +14,9 @@ The best way to use this guide is to read a section, open the matching examples,
 | 2 | Methods, parameters, arrays, `ArrayList`, classes, objects, constructors, introductory OOP |
 | 3 | Encapsulation, inheritance, composition, polymorphism, collections, strings, object identity |
 | 4 | Exceptions, interfaces, iterators, abstraction, and the first SOLID design principles |
+| 5 | Generics, file input/output, `DateTime` API, and practical Java exercises |
+
+This repository currently contains five course weeks. The summary below follows that scope and stays aligned with the material actually provided in the Markdown files and exercises.
 
 ---
 
@@ -719,9 +724,102 @@ You should now be able to:
 - Use iterators for safe removal during collection traversal.
 - Recognize the first design problems described by SRP, OCP, and DIP.
 
+## 17. Week 5 — Generics, File I/O, and the Date-Time API
+
+This week strengthens the Java core by introducing more reusable and production-oriented types.
+
+### 17.1 Generics
+
+Generics allow classes and methods to work with a specific type while keeping the code reusable.
+
+```java
+List<String> names = new ArrayList<>();
+Map<String, Integer> scores = new HashMap<>();
+
+public static <T> T first(T value1, T value2) {
+    return value1;
+}
+```
+
+Generic types remove the need for unsafe casts. They help avoid `ClassCastException` and make code more readable.
+
+Use `? extends` when you want to read values from a collection:
+
+```java
+List<? extends Number> numbers = List.of(1, 2.5, 3L);
+```
+
+Use `? super` when you want to write values into a generic structure:
+
+```java
+List<? super Number> values = new ArrayList<>();
+values.add(10);
+values.add(3.14);
+```
+
+### 17.2 File I/O
+
+Java can read and write text files using `Files`, `Path`, and streams.
+
+```java
+Path path = Path.of("data.txt");
+String content = Files.readString(path);
+Files.writeString(path, content + "\nJava");
+```
+
+Common patterns include:
+
+- `Files.readString()` and `Files.writeString()` for small text files
+- `BufferedReader` and `BufferedWriter` for larger or line-based reading
+- `Scanner` for simple command-line or console input
+
+Always close resources when using file streams directly, or prefer `try-with-resources`.
+
+### 17.3 Date and Time API
+
+The modern Java date API avoids the problems of `Date` and `Calendar`.
+
+```java
+LocalDate today = LocalDate.now();
+LocalTime time = LocalTime.now();
+LocalDateTime now = LocalDateTime.now();
+
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+System.out.println(today.format(formatter));
+```
+
+Useful classes:
+
+- `LocalDate`: date only
+- `LocalTime`: time only
+- `LocalDateTime`: both date and time
+- `Duration`: amount of time, like hours/minutes/seconds
+- `Period`: date-based amount, like years/months/days
+
+Key learning goal: use the modern API instead of old date classes when building real-world applications.
+
+---
+
+## 18. Final Teaching Recommendations
+
+To use this file effectively as a course support, follow this rhythm:
+
+1. Read the concept briefly.
+2. Study the code example.
+3. Identify the purpose and constraints.
+4. Reproduce the example in your IDE.
+5. Modify it with a small test scenario.
+6. Compare your version with the concept notes.
+7. Review the relevant exercise from the repository.
+
+This method converts the documentation from simple reading into active learning. This is the strongest approach for mastering Java and backend development.
+
+---
+
 ## Related Repository Sections
 
 - [Week 1 README](java-week-1/README.md)
 - [Week 2 README](java-week-2/README.md)
 - [Week 3 README](java-week-3/README.md)
-- [Week 4 principles](java-week-4/info/principles.md)
+- [Week 4 README](java-week-4/README.md)
+- [Week 5 README](java-week-5/README.md)

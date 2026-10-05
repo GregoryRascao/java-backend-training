@@ -64,7 +64,7 @@ public class Exercise3 {
         System.out.println("Double average: " + average(decimals));
 
         System.out.println("\n=== Task 5: Remove Raw Types ===\n");
-        // TODO: Replace raw list with a typed list
+        // ! Replace raw list with a typed list
     }
 
     // Task 2 - Implement safeCast
