@@ -34,9 +34,11 @@ public class Example3
 
         String combined = Stream.of("hello", "world", "java", "streams")
                 .reduce("Start", (String a, String b) -> a + "-" + b);
+
         Optional<String> reduce = Stream.of("streams", "and", "lambdas").reduce((a, b) -> a + " " + b);
+
         String s = reduce.orElse("something else");
-        // .reduce function has method overloading
+
         System.out.println(combined);
         System.out.println(s);
     }

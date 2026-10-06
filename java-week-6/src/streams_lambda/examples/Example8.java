@@ -31,13 +31,13 @@ public class Example8
 
 
         double v = DoubleStream.of(2.5, 7.1, 3.9).filter(n -> n > 10).max().orElse(0.0);
-        Optional<String> maybeName = List.of("Ada", "Bob").stream()
+
+        Optional<String> maybeName = List.of("Fatma", "Jon").stream()
                 .filter(n -> n.startsWith("Z"))
                 .findFirst();
-
 //        maybeName.get();  // Question: Exception or null?
 
-        List<String> names = List.of("Alice", "Adam", "Bob", "Bella", "Charlie");
+        List<String> names = List.of("Gregory", "Ricardo", "Roberto", "Gomathi", "Charlotte");
         List<Character> characters = names.stream().map(n -> n.charAt(0)).toList();
         List<String> collect = names.stream().collect(Collectors.toList());
 

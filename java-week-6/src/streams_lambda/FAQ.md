@@ -1,6 +1,6 @@
 # Streams FAQ
 
-This document answers common questions students ask when first learning **Java Streams**.
+This document answers common questions asked when first learning **Java Streams**.
 
 ---
 

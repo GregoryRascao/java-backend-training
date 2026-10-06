@@ -10,10 +10,71 @@
 
 package serialization.exercises;
 
-public class Exercise5
-{
-    public static void main(String[] args)
-    {
-        // Implement here
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.Set;
+
+public class Exercise5 {
+    public class Settings implements Serializable {
+        private String theme;
+        private double volume;
+        private transient String language;
+
+        public Settings(String theme, double volume, String language) {
+            this.theme = theme;
+            this.volume = volume;
+            this.language = language;
+        }
+
+        @Override
+        public String toString() {
+            return "This are the settings :" + theme + " ,volume =" + volume + " language = " + language;
+        }
+
+        public String getTheme() {
+            return theme;
+        }
+
+        public String getVolume() {
+            return volume;
+        }
+
+        public String getLanguage() {
+            return language;
+        }
+    }
+
+    public static void main(String[] args) {
+        Set<Settings> config = new LinkedHashSet<>();
+        config.add(new Settings("dark", 90, "fr"));
+        config.add(new Settings("white", 70, "pt"));
+        config.add(new Settings("dark", 60, "en"));
+
+        String fileName = "../../../resources/settings.ser";
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileName))) {
+            out.writeObject(config);
+            System.out.println("Config Saved to " + fileName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Set<Settings> newConfig = new LinkedHashSet<>();
+        config.add(new Settings("brown", 30, "fr"));
+        config.add(new Settings("white", 05, "pt"));
+        config.add(new Settings("dark", 90, "en"));
+
+        System.out.println("Old set: " + oldSet);
+        System.out.println("New set: " + newSet);
+
+        Set<Settings> loadedSet = null;
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName))) {
+            loadedSet = (Set<Settings>) in.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Loaded old set: " + loadedSet);
+
+        System.out.println("Are they the same? " + config.equals(loadedSet));
     }
 }

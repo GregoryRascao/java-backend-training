@@ -7,10 +7,15 @@
 
 package streams_lambda.exercises;
 
+import java.util.List;
+
 public class Exercise7
 {
     public static void main(String[] args)
     {
+        List<String> names = List.of("Ni", "ki", "ta", "abba");
 
+        List<String> filterStrings = names.stream().filter(name -> name.startsWith("A")|| name.startsWith("a")).toList();
+        System.out.println("filterString :" + filterStrings);
     }
 }

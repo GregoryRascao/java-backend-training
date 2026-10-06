@@ -116,7 +116,7 @@ Using enums is common when a value can only belong to a small fixed set of optio
 
 ## Learning outcomes
 
-By the end of this folder, students should be able to:
+By the end of this folder, we should be able to:
 - read files efficiently with buffering
 - compute metrics from text (line count, word count)
 - filter lines by keyword

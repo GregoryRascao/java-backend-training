@@ -32,7 +32,7 @@ numbers.stream()
        .forEach(System.out::println);
 ```
 
-Use when you need to test something.
+Use when you need to test and filter something.
 
 ## 2. `Function<T, R>`
 

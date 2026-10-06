@@ -30,7 +30,7 @@ try (BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt", tru
 
 ## Learning outcomes
 
-By the end of this folder, students should be able to:
+By the end of this folder, we should be able to:
 - write line-oriented text output
 - append logs or incremental records safely
 - generate files from in-memory data structures

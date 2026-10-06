@@ -78,7 +78,7 @@ class Person implements Serializable
 
 ## 🧩 Learning Outcomes
 
-By completing this section, students will:
+By completing this section, we will:
 
 - Understand how **serialization** and **deserialization** work
 - Use **ObjectOutputStream** and **ObjectInputStream** effectively

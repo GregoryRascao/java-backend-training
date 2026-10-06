@@ -39,7 +39,7 @@ public class Exercise2 {
         students.add(new Student("Gayatri", 18.9));
         students.add(new Student("Grégory", 16.2));
 
-        String fileName = "Student.ser";
+        String fileName = "../../../resources/Student.ser";
 
         // serialization
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileName))) {

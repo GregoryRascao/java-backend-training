@@ -14,7 +14,7 @@ public class Example7
 {
     public static void main(String[] args)
     {
-        List<String> names = List.of("Lina", "Alexander", "Mo", "Sara", "Ali");
+        List<String> names = List.of("Oleg", "Gayatri", "Mila", "Paul", "Malek");
 
         List<String> byLengthThenAlphabetical = names.stream()
                 .sorted(Comparator.comparingInt(String::length)

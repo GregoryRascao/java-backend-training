@@ -4,7 +4,7 @@
 
 In this lesson, we connect **Generics** with **Streams**.
 
-By the end of the lesson, students should:
+By the end of the lesson, we should:
 
 - Understand how generics are used in real APIs
 - Recognize generic functional interfaces

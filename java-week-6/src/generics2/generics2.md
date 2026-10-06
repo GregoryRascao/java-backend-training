@@ -24,15 +24,14 @@ List<Integer> ints = new ArrayList<>();
 // List<Number> nums = ints; // compile error
 ```
 Even though Integer is a subtype of Number,
-List<Integer> is not a subtype of List<Number>.
+`List<Integer>` is not a subtype of `List<Number>`.
 
 Why?
 
-If this were allowed:
 ```java
 // Imagine Java allowed this:
 List<Number> nums = ints;
-
+//then this would also be possible
 nums.add(3.14);
 ```
 Now ints would contain a Double, which breaks type safety.
@@ -133,7 +132,7 @@ Not safe to add elements
 
 Why?
 
-Because the actual list might be List<Integer> or List<Double>,
+Because the actual list might be `List<Integer>` or `List<Double>`,
 Java cannot safely allow inserting values.
 
 # 4. Lower Bound ? super T
@@ -141,7 +140,7 @@ Java cannot safely allow inserting values.
 Lower bounds are used when a method writes values into a collection.
 
 ### Example:
-```java
+``java
 public static void addDefaults(List<? super Integer> values)
 {
     values.add(10);
@@ -198,15 +197,15 @@ List<? extends Number> nums = ints;
 Can we do nums.add(5)?
 ```
 
-# 6. Choosing <T> vs Wildcards
+# 6. Choosing `<T>` vs Wildcards
 
-Use <T> when:
+Use `<T>` when:
 
 The same type appears multiple times
 
 You need a relationship between parameters
 
-Why not use <T> everywhere?
+Why not use `<T>` everywhere?
 
 Use a wildcard when the method does not need to refer to the type by name.
 

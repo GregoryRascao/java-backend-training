@@ -21,7 +21,7 @@ public class Example3SuperWrite {
     }
 
     public static void addDefaults(List<? super Integer> values) {
-
+        System.out.println(values.get(0));  //object
         values.add(10);
         values.add(20);
         values.add(30);

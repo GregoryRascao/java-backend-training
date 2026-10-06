@@ -16,12 +16,13 @@ public class Example5
 {
     public static void main(String[] args)
     {
-        List<String> names = List.of("Alice", "bob", "Anna", "George", "Amelia");
+        List<String> names = List.of("Alize", "bora", "Alisan", "Gregory", "Samira");
 
         List<String> filtered = names.stream()
             .filter(name -> name.startsWith("A") || name.startsWith("a"))
             .filter(longEnough -> longEnough.length() > 4)
             .toList();
+
         Stream<String> stringStream = names.stream()
                 .filter(name -> name.startsWith("A") || name.startsWith("a"))
                 .filter(longEnough -> longEnough.length() > 4);
