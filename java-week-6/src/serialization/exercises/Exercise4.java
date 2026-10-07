@@ -9,12 +9,18 @@
 
 package serialization.exercises;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Exercise4
 {
-    public class Employee{
+    private static class Employee{
         private String name;
         private String position;
         public Employee(String name, String position){
@@ -26,16 +32,16 @@ public class Exercise4
             return "Employee name :" + name + "position is :" + position;
         }
     }
-    public class Company implements Serializable{
-        List<String> employee;
-        public Company{
-            this.employee = new ArrayList<>();
+    private static class Company implements Serializable{
+        List<Employee> employees;
+        public Company(){
+            this.employees = new ArrayList<>();
         }
         public void addEmployee(Employee employee){
-            employee.add(employee);
+            employees.add(employee);
         }
         public List<Employee> getEmployees(){
-            return employee;
+            return employees;
         }
     }
     public static void main(String[] args)

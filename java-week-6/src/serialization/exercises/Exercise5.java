@@ -10,12 +10,17 @@
 
 package serialization.exercises;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class Exercise5 {
-    public class Settings implements Serializable {
+    public static class Settings implements Serializable {
         private String theme;
         private double volume;
         private transient String language;
@@ -35,7 +40,7 @@ public class Exercise5 {
             return theme;
         }
 
-        public String getVolume() {
+        public double getVolume() {
             return volume;
         }
 
@@ -46,7 +51,7 @@ public class Exercise5 {
 
     public static void main(String[] args) {
         Set<Settings> config = new LinkedHashSet<>();
-        config.add(new Settings("dark", 90, "fr"));
+        config.add(new Settings("dark", 90.0, "fr"));
         config.add(new Settings("white", 70, "pt"));
         config.add(new Settings("dark", 60, "en"));
 
@@ -63,8 +68,8 @@ public class Exercise5 {
         config.add(new Settings("white", 05, "pt"));
         config.add(new Settings("dark", 90, "en"));
 
-        System.out.println("Old set: " + oldSet);
-        System.out.println("New set: " + newSet);
+        System.out.println("Old set: " + config);
+        System.out.println("New set: " + newConfig);
 
         Set<Settings> loadedSet = null;
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName))) {

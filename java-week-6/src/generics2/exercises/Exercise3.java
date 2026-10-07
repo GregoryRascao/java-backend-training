@@ -1,5 +1,7 @@
 package generics2.exercises;
 
+import java.util.List;
+
 /**
  * Exercise 3 — Data Processor
  *

@@ -22,7 +22,7 @@ public class Exercise1 {
         List<Number> numList = new ArrayList<>();
         List<Object> objList = new ArrayList<>();
 
-        // TODO: call your methods here
+        // call your methods here
         printList(ints);
         printList(doubles);
 
@@ -30,13 +30,13 @@ public class Exercise1 {
         sumNumbers(doubles);
 
         addDefaults(numList);
-        addDefaults(doubles);
+        addDefaults(objList);
 
         printList(numList);
         printList(objList);
     }
 
-    // TODO: task 1
+    // task 1
     public static void printList(List<?> list){
         for (Object item : list) {
             System.out.println(item);
@@ -44,7 +44,7 @@ public class Exercise1 {
     }
 
 
-    // TODO: task 2
+    // task 2
     public static double sumNumbers(List<? extends Number> numbers){
         double total = 0.0;
         for (Number number : numbers) {
@@ -54,7 +54,7 @@ public class Exercise1 {
     }
 
 
-    // TODO: task 3
+    // task 3
     public static void addDefaults(List<? super Integer> list){
         list.add(1);
         list.add(2);
@@ -62,10 +62,10 @@ public class Exercise1 {
     }
 
 
-    // TODO: task 4
+    // task 4
     public static <T> void copy(List<? extends T> source, List<? super T> destination ){
         for (T t : source) {
-            destination.add(item);
+            destination.add(t);
         }
     }
 }
