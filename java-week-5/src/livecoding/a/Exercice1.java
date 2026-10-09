@@ -1,3 +1,4 @@
+package livecoding.a;
 import java.util.Scanner;
 public class Exercice1 {
 
