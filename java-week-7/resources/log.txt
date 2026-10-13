@@ -1,0 +1,8 @@
+INFO server ready in Brussels
+INFO user login: anna.vdb
+WARN disk usage at 82 percent on node-ghent
+ERROR database connection timeout
+INFO retry connection succeeded
+WARN api response time above threshold
+ERROR failed to load schedule for Antwerp route
+INFO nightly backup completed

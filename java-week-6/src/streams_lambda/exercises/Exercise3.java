@@ -5,8 +5,6 @@
  */
 
 package streams_lambda.exercises;
-
-import java.util.Comparator;
 import java.util.List;
 
 public class Exercise3
