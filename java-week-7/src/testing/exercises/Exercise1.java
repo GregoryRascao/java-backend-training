@@ -24,4 +24,18 @@ public class Exercise1
     }
 
     // TODO: write your @Test methods here
+    @Test
+    void multipliesTwoPositiveNumbers() {
+        assertEquals(15, multiply(3, 5));
+    }
+
+    @Test
+    void multipliesByZero() {
+        assertEquals(0, multiply(8, 0));
+    }
+
+    @Test
+    void multipliesPositiveAndNegativeNumbers() {
+        assertEquals(-12, multiply(3, -4));
+    }
 }
