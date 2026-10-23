@@ -187,5 +187,8 @@ sudo rm -rf /var/lib/postgresql/
 sudo rm -rf /etc/postgresql/
 ```
 
+### A Youtube video explaining PostgreSql setup
+
+https://www.youtube.com/watch?v=T1PrXly6kOs
 ---
 

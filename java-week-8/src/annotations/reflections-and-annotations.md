@@ -104,7 +104,7 @@ The annotation is only metadata. **The `Runner` supplies the logging behaviour**
 
 ## 4. Why Does `isAnnotationPresent` Return False?
 
-Try to make the Runner Example invode the process. Why is it not finding? Take 5-10 minutes to find it.
+Try to make the Runner Example invoke the process. Why is it not finding? Take 5-10 minutes to find it.
 
 ### Answer
 

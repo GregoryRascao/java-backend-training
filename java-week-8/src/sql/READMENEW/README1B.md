@@ -11,7 +11,7 @@ We have already queried an existing database. Now we will ask: **Who created the
 Open the [setup.sql](setup.sql) file. It contains this definition for our student table:
 
 ```sql
-CREATE TABLE lesson_students (
+CREATE TABLE student (
     student_id INT PRIMARY KEY,
     full_name VARCHAR(100) NOT NULL,
     age INT NOT NULL CHECK (age >= 0),
@@ -20,7 +20,7 @@ CREATE TABLE lesson_students (
 );
 ```
 
-**Do not run this block again** if you already ran setup: `lesson_students` already exists.
+**Do not run this block again** if you already ran setup: `student` already exists.
 
 `CREATE TABLE` defines the table's **structure**. It names the columns, specifies the kinds of values they hold, and declares rules the database should enforce. It does **not** insert any students.
 
@@ -51,7 +51,7 @@ Suppose two students share the same name, or someone accidentally enters an age 
 | `CHECK` | Requires a condition to be true, such as `age >= 0` |
 | `FOREIGN KEY` | Requires a reference to an existing row in another table |
 
-A primary key may consist of more than one column. Our `lesson_enrollments` table uses the pair `(student_id, course_id)` to identify an enrollment. We will explore **foreign keys** and **relationships** in [README3.md](README3.md).
+A primary key may consist of more than one column. Our `enrollment` table uses the pair `(student_id, course_id)` to identify an enrollment. We will explore **foreign keys** and **relationships** in [README3.md](README3.md).
 
 ### What is NULL?
 
@@ -69,7 +69,7 @@ Two subtleties worth remembering:
 We will leave the three shared lesson tables alone. Instead, create a **separate practice table**:
 
 ```sql
-CREATE TABLE lesson_practice_students (
+CREATE TABLE practice_student (
     student_id INT PRIMARY KEY,
     full_name VARCHAR(100) NOT NULL,
     city VARCHAR(100) NOT NULL
@@ -87,13 +87,13 @@ This is intentionally smaller than our real student table. The new table has **z
 Run these statements in the order shown:
 
 ```sql
-INSERT INTO lesson_practice_students (student_id, full_name, city)
+INSERT INTO practice_student (student_id, full_name, city)
 VALUES (101, 'Alisan', 'Brussels');
 
-INSERT INTO lesson_practice_students (student_id, full_name, city)
+INSERT INTO practice_student (student_id, full_name, city)
 VALUES (102, 'Fatma', 'Antwerp');
 
-INSERT INTO lesson_practice_students (student_id, full_name, city)
+INSERT INTO practice_student (student_id, full_name, city)
 VALUES (103, 'Nikita', 'Ghent');
 ```
 
@@ -103,7 +103,7 @@ Check what was stored:
 
 ```sql
 SELECT student_id, full_name, city
-FROM lesson_practice_students
+FROM practice_student
 ORDER BY student_id;
 ```
 
@@ -116,7 +116,7 @@ You should see three students. We created a structure with `CREATE TABLE`, and t
 Imagine Fatma moves to Brussels:
 
 ```sql
-UPDATE lesson_practice_students
+UPDATE practice_student
 SET city = 'Brussels'
 WHERE student_id = 102;
 ```
@@ -127,7 +127,7 @@ Verify the result:
 
 ```sql
 SELECT student_id, full_name, city
-FROM lesson_practice_students
+FROM practice_student
 WHERE student_id = 102;
 ```
 
@@ -138,7 +138,7 @@ WHERE student_id = 102;
 For the demonstration, remove only Nikita's practice record:
 
 ```sql
-DELETE FROM lesson_practice_students
+DELETE FROM practice_student
 WHERE student_id = 103;
 ```
 
@@ -146,7 +146,7 @@ Now check the table again:
 
 ```sql
 SELECT *
-FROM lesson_practice_students
+FROM practice_student
 ORDER BY student_id;
 ```
 
@@ -160,7 +160,7 @@ Consider these situations before touching the keyboard:
 
 1. Alisan is already student `101`. Can you add another student using ID `101`?
 2. Can you insert a practice student without a `full_name` value?
-3. Can you store a student's age as `-3` in our shared `lesson_students` table?
+3. Can you store a student's age as `-3` in our shared `student` table?
 4. Would the database allow two different students to have the same name, provided their IDs and emails are different?
 
 The first three are rejected by our table constraints. The fourth is allowed: names are not necessarily unique.
@@ -179,7 +179,7 @@ Backend developers use SQL to retrieve and change application data. Database adm
 
 ## Short exercises
 
-Use **only** `lesson_practice_students` for these tasks:
+Use **only** `practice_student` for these tasks:
 
 1. Add `Gregory` with ID `104` and city `Leuven`.
 2. Query Gregory's row by ID to verify the insert.

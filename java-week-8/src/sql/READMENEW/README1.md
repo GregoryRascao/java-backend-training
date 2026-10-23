@@ -19,9 +19,9 @@ For consistency, everyone will work with the same three tables:
 
 | Table | Contains |
 | --- | --- |
-| `lesson_students` | Student details |
-| `lesson_courses` | Courses such as Java and SQL |
-| `lesson_enrollments` | Which students attend which courses |
+| `student` | Student details |
+| `courses` | Courses such as Java and SQL |
+| `enrollment` | Which students attend which courses |
 
 **Setup (once at the start):**
 
@@ -34,18 +34,16 @@ Students can also run the setup script if they need their own copy of the lesson
 
 **Important:** Running `setup.sql` again **deletes and recreates these three lesson tables**. It is a reset, not something to run before every query. Save any SQL you want to keep outside the playground.
 
-The `lesson_` prefix distinguishes our tables from any example tables already shown by the website.
-
 ## 2. Ask the database a question
 
 Run this query:
 
 ```sql
 SELECT full_name
-FROM lesson_students;
+FROM student;
 ```
 
-**“From the students table, show the full_name column.”**
+**“From the student table, show the full_name column.”**
 
 The result should contain five rows. Look at the values in the result area.
 
@@ -57,7 +55,7 @@ We did not write a Java `for` loop. We told PostgreSQL what data we wanted, and 
 
 ```sql
 SELECT student_id, full_name, city
-FROM lesson_students
+FROM student
 ORDER BY student_id;
 ```
 
@@ -77,7 +75,7 @@ You can also request every column:
 
 ```sql
 SELECT *
-FROM lesson_students
+FROM student
 ORDER BY student_id;
 ```
 
@@ -89,7 +87,7 @@ Imagine we want only students from Brussels:
 
 ```sql
 SELECT full_name, city
-FROM lesson_students
+FROM student
 WHERE city = 'Brussels'
 ORDER BY student_id;
 ```
@@ -111,7 +109,7 @@ Try changing the city to `'Ghent'`. What name do you expect to see?
 
 ```sql
 SELECT full_name, age
-FROM lesson_students
+FROM student
 ORDER BY age DESC, student_id ASC;
 ```
 
@@ -129,7 +127,7 @@ For example:
 
 ```sql
 SELECT full_name
-FROM lesson_students
+FROM student
 WHERE student_id = 3;
 ```
 
@@ -151,7 +149,7 @@ In SQL, a similar question can be written as:
 
 ```sql
 SELECT full_name, city
-FROM lesson_students
+FROM student
 WHERE city = 'Brussels';
 ```
 
@@ -165,7 +163,7 @@ Both express a filtering idea, but there is an important difference: **Java Stre
 2. Show only the record with `student_id = 4`. Which student is it?
 3. Show the names and cities of students from Brussels.
 4. Show every student's name and age, ordered from youngest to oldest.
-5. Explain why `SELECT full_name FROM lesson_students;` does not erase the other columns.
+5. Explain why `SELECT full_name FROM student;` does not erase the other columns.
 
 ### Before moving on
 

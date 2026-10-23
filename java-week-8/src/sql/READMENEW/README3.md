@@ -12,9 +12,9 @@ Instead, we store each student once and each course once. An enrollment records 
 
 | Table | What one row represents |
 | --- | --- |
-| `lesson_students` | One student |
-| `lesson_courses` | One course |
-| `lesson_enrollments` | One student attending one course |
+| `student` | One student |
+| `course` | One course |
+| `enrollment` | One student attending one course |
 
 This is an introduction to relational design: put each fact where it belongs, then connect related facts using keys.
 
@@ -26,19 +26,19 @@ Kien has three enrollments. Each enrollment belongs to one student. From student
 
 ## 3. Many-to-many needs a junction table
 
-A student can attend several courses, and a course can contain several students. We represent this **many-to-many** relationship with a junction table, `lesson_enrollments`.
+A student can attend several courses, and a course can contain several students. We represent this **many-to-many** relationship with a junction table, `enrollment`.
 
 This definition is already in setup; do not recreate the table:
 
 ```sql
-CREATE TABLE lesson_enrollments (
+CREATE TABLE enrollment (
     student_id INT NOT NULL,
     course_id INT NOT NULL,
     enrolled_on DATE NOT NULL,
     grade NUMERIC(5,2) CHECK (grade BETWEEN 0 AND 100),
     PRIMARY KEY (student_id, course_id),
-    FOREIGN KEY (student_id) REFERENCES lesson_students(student_id),
-    FOREIGN KEY (course_id) REFERENCES lesson_courses(course_id)
+    FOREIGN KEY (student_id) REFERENCES student(student_id),
+    FOREIGN KEY (course_id) REFERENCES course(course_id)
 );
 ```
 
@@ -54,18 +54,18 @@ An entity-relationship diagram shows tables and how they connect:
 
 ```mermaid
 erDiagram
-    lesson_students ||--o{ lesson_enrollments : has
-    lesson_courses ||--o{ lesson_enrollments : receives
-    lesson_students {
+    student ||--o{ enrollment : has
+    course ||--o{ enrollment : receives
+    student {
         int student_id PK
         string full_name
         string email UK
     }
-    lesson_courses {
+    course {
         int course_id PK
         string title
     }
-    lesson_enrollments {
+    enrollment {
         int student_id PK, FK
         int course_id PK, FK
         date enrolled_on
@@ -77,14 +77,14 @@ erDiagram
 
 The diagram shows selected columns. `PK` marks a primary-key column, `FK` a foreign-key column, and `UK` a unique key.
 
-**Discuss:** why can we store Kien's email in `lesson_students`, but not her course grade?
+**Discuss:** why can we store Kien's email in `student`, but not her course grade?
 
 ## 5. Match rows with INNER JOIN
 
 ```sql
 SELECT s.full_name, e.course_id, e.grade
-FROM lesson_students AS s
-INNER JOIN lesson_enrollments AS e
+FROM student AS s
+INNER JOIN enrollment AS e
     ON s.student_id = e.student_id
 ORDER BY s.student_id, e.course_id;
 ```
@@ -111,10 +111,10 @@ Kien appears three times because she has three enrollments. Paul does not appear
 
 ```sql
 SELECT s.full_name, c.title, e.grade
-FROM lesson_students AS s
-JOIN lesson_enrollments AS e
+FROM student AS s
+JOIN enrollment AS e
     ON s.student_id = e.student_id
-JOIN lesson_courses AS c
+JOIN course AS c
     ON e.course_id = c.course_id
 ORDER BY s.student_id, c.course_id;
 ```
@@ -127,10 +127,10 @@ Do not join a student ID directly to a course ID. Both are integers, but they id
 
 ```sql
 SELECT s.full_name, c.title, e.grade
-FROM lesson_students AS s
-LEFT JOIN lesson_enrollments AS e
+FROM student AS s
+LEFT JOIN enrollment AS e
     ON s.student_id = e.student_id
-LEFT JOIN lesson_courses AS c
+LEFT JOIN course AS c
     ON e.course_id = c.course_id
 ORDER BY s.student_id, c.course_id;
 ```
@@ -149,8 +149,8 @@ Both joins are left joins so Paul survives the whole chain. Notice that `LEFT JO
 
 ```sql
 SELECT s.full_name
-FROM lesson_students AS s
-LEFT JOIN lesson_enrollments AS e
+FROM student AS s
+LEFT JOIN enrollment AS e
     ON s.student_id = e.student_id
 WHERE e.student_id IS NULL
 ORDER BY s.student_id;
@@ -166,8 +166,8 @@ Suppose we want every student, showing their SQL enrollment if they have one:
 
 ```sql
 SELECT s.full_name, e.course_id
-FROM lesson_students AS s
-LEFT JOIN lesson_enrollments AS e
+FROM student AS s
+LEFT JOIN enrollment AS e
     ON s.student_id = e.student_id
    AND e.course_id = 20
 ORDER BY s.student_id;
@@ -183,6 +183,6 @@ Ask three questions about each join: what does one output row represent, which c
 
 `INNER JOIN` and `LEFT JOIN` cover our main examples. [psql-join.md](psql-join.md) is an optional reference for `RIGHT JOIN`, `FULL JOIN`, and `CROSS JOIN`; it is not a second required lesson on the same material.
 
-Next: [summarizing these rows with GROUP BY](README4.md).
+
 
 Reference: [PostgreSQL joins](https://www.postgresql.org/docs/16/tutorial-join.html).

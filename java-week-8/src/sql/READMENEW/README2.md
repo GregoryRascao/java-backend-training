@@ -8,7 +8,7 @@ Use the data from [setup.sql](setup.sql). If you changed it during a previous de
 
 ```sql
 SELECT *
-FROM lesson_students
+FROM student
 ORDER BY student_id;
 ```
 
@@ -16,7 +16,7 @@ ORDER BY student_id;
 
 ```sql
 SELECT full_name, age
-FROM lesson_students
+FROM student
 ORDER BY student_id;
 ```
 
@@ -26,7 +26,7 @@ The database still contains email addresses and cities; this result simply does 
 
 ```sql
 SELECT full_name, age
-FROM lesson_students
+FROM student
 WHERE age > 25
 ORDER BY student_id;
 ```
@@ -52,7 +52,7 @@ SQL uses `=` for equality, unlike Java's `==`. A `SELECT` without `WHERE` is per
 
 ```sql
 SELECT full_name, age, city
-FROM lesson_students
+FROM student
 WHERE city = 'Brussels' AND age >= 24
 ORDER BY student_id;
 ```
@@ -61,7 +61,7 @@ This returns Kien and Gayatri. With `AND`, both conditions must be true. With `O
 
 ```sql
 SELECT full_name, city
-FROM lesson_students
+FROM student
 WHERE city = 'Brussels' OR city = 'Antwerp'
 ORDER BY student_id;
 ```
@@ -70,7 +70,7 @@ This returns Kien, Malek, Charlotte, and Gayatri. Use parentheses when mixing th
 
 ```sql
 SELECT full_name
-FROM lesson_students
+FROM student
 WHERE (city = 'Brussels' OR city = 'Antwerp')
   AND age >= 25
 ORDER BY student_id;
@@ -86,7 +86,7 @@ Now only Malek and Gayatri match. SQL evaluates `AND` before `OR`; parentheses m
 
 ```sql
 SELECT full_name, city
-FROM lesson_students
+FROM student
 WHERE city IN ('Brussels', 'Antwerp')
 ORDER BY student_id;
 ```
@@ -97,7 +97,7 @@ This has the same meaning as the earlier two-city `OR` condition. `NOT IN ('Brus
 
 ```sql
 SELECT full_name, age
-FROM lesson_students
+FROM student
 WHERE age BETWEEN 24 AND 29
 ORDER BY student_id;
 ```
@@ -108,7 +108,7 @@ The same idea works with our `DATE` column:
 
 ```sql
 SELECT student_id, course_id, enrolled_on
-FROM lesson_enrollments
+FROM enrollment
 WHERE enrolled_on BETWEEN '2026-10-01' AND '2026-10-02'
 ORDER BY student_id, course_id;
 ```
@@ -119,7 +119,7 @@ Both dates are included, giving six enrollments. A timestamp also contains a tim
 
 ```sql
 SELECT full_name
-FROM lesson_students
+FROM student
 WHERE full_name LIKE 'S%'
 ORDER BY student_id;
 ```
@@ -137,7 +137,7 @@ For ordinary PostgreSQL text matching, `LIKE` is case-sensitive. PostgreSQL also
 
 ```sql
 SELECT full_name
-FROM lesson_students
+FROM student
 WHERE full_name ILIKE 's%'
 ORDER BY student_id;
 ```
@@ -148,7 +148,7 @@ This also returns Kien. Use `=` for an exact value and `LIKE`/`ILIKE` when you n
 
 ```sql
 SELECT student_id, course_id, grade
-FROM lesson_enrollments
+FROM enrollment
 WHERE grade IS NULL;
 ```
 
@@ -162,7 +162,7 @@ An unrecorded grade and a grade of zero mean different things. Do not replace on
 
 ```sql
 SELECT full_name, age
-FROM lesson_students
+FROM student
 ORDER BY age DESC, student_id ASC
 LIMIT 3;
 ```
@@ -181,7 +181,7 @@ LIMIT 3;
 
 ```sql
 SELECT DISTINCT city
-FROM lesson_students
+FROM student
 ORDER BY city;
 ```
 
@@ -191,7 +191,7 @@ To count matching rows instead:
 
 ```sql
 SELECT COUNT(*) AS student_count
-FROM lesson_students
+FROM student
 WHERE city = 'Brussels';
 ```
 
@@ -201,7 +201,7 @@ The result is one row containing `3`. `AS student_count` gives the result column
 
 ```sql
 SELECT full_name, age
-FROM lesson_students
+FROM student
 WHERE city = 'Brussels'
 ORDER BY age DESC, student_id
 LIMIT 2;

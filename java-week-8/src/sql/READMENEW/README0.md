@@ -127,7 +127,7 @@ Here is a preview of a query — **you do not need to understand its syntax yet*
 
 ```sql
 SELECT full_name
-FROM lesson_students;
+FROM student;
 ```
 
 Read it as: “Show the full names from the students table.”

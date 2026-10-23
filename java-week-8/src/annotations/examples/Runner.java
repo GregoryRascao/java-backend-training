@@ -10,6 +10,8 @@ import java.time.LocalDateTime;
 
 //TODO Find what is missing here
 //This example is intentionally incomplete
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
 @interface Log {}
 
 class Service {
@@ -17,6 +19,9 @@ class Service {
     @Log
     public void process() {
         System.out.println("Processing...");
+    }
+        public void healthCheck() {
+        System.out.println("Checking health...");
     }
 }
 

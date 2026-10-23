@@ -6,9 +6,9 @@ CREATE TABLE enrollment (
     student_id INT NOT NULL,
     course_id INT NOT NULL,
     enrolled_at DATE,
-    PRIMARY KEY (student_id, course_id),
-    FOREIGN KEY (student_id) REFERENCES students(student_id),
-    FOREIGN KEY (course_id) REFERENCES courses(course_id)
+    PRIMARY KEY (student_id, course_id ),  --adding enrolled_at would be a better design (to retake courses)
+    FOREIGN KEY (student_id) REFERENCES student(id),
+    FOREIGN KEY (course_id) REFERENCES course(id)
 );
 
 INSERT INTO enrollment (student_id, course_id, enrolled_at)
@@ -20,3 +20,4 @@ VALUES
 UPDATE enrollment
 SET enrolled_at = '2026-03-02'
 WHERE student_id = 2 AND course_id = 20;
+
