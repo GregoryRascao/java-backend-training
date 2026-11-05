@@ -1,0 +1,39 @@
+import java.util.concurrent.CompletableFuture;
+
+public class FakeApiCallsSolution {
+
+    public static String getUserData() throws InterruptedException {
+        Thread.sleep(1500);
+        return "User data";
+    }
+
+    public static String getOrderData() throws InterruptedException {
+        Thread.sleep(2000);
+        return "Order data";
+    }
+
+    public static void main(String[] args) {
+        CompletableFuture<String> userFuture = CompletableFuture.supplyAsync(() -> {
+            try {
+                return getUserData();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        CompletableFuture<String> orderFuture = CompletableFuture.supplyAsync(() -> {
+            try {
+                return getOrderData();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        CompletableFuture<String> combined = userFuture.thenCombine(
+                orderFuture,
+                (user, order) -> user + " + " + order
+        );
+
+        System.out.println(combined.join());
+    }
+}

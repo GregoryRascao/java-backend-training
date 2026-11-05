@@ -49,7 +49,7 @@ public class Academy {
     public void register(int studentId, int workshopId) {
         Student student = findStudent(studentId)
                 .orElseThrow(() -> new IllegalArgumentException(
-                        "Unknown student ID: " + studentId));
+                        "Student ID Unknown: " + studentId));
 
         Workshop workshop = findWorkshop(workshopId)
                 .orElseThrow(() -> new IllegalArgumentException(
@@ -61,7 +61,7 @@ public class Academy {
     public boolean unregister(int studentId, int workshopId) {
         Student student = findStudent(studentId)
                 .orElseThrow(() -> new IllegalArgumentException(
-                        "Unknown student ID: " + studentId));
+                        "Student ID Unknown: " + studentId));
 
         Workshop workshop = findWorkshop(workshopId)
                 .orElseThrow(() -> new IllegalArgumentException(

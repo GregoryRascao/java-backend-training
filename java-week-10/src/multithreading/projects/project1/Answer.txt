@@ -1,0 +1,41 @@
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
+public class ParallelTaskRunnerSolution {
+
+    public static void main(String[] args) throws Exception {
+        long start = System.currentTimeMillis();
+
+        ExecutorService executor = Executors.newFixedThreadPool(3);
+
+        Callable<String> taskA = () -> {
+            Thread.sleep(1000);
+            return "Task A done in " + Thread.currentThread().getName();
+        };
+
+        Callable<String> taskB = () -> {
+            Thread.sleep(2000);
+            return "Task B done in " + Thread.currentThread().getName();
+        };
+
+        Callable<String> taskC = () -> {
+            Thread.sleep(3000);
+            return "Task C done in " + Thread.currentThread().getName();
+        };
+
+        Future<String> futureA = executor.submit(taskA);
+        Future<String> futureB = executor.submit(taskB);
+        Future<String> futureC = executor.submit(taskC);
+
+        System.out.println(futureA.get());
+        System.out.println(futureB.get());
+        System.out.println(futureC.get());
+
+        executor.shutdown();
+
+        long end = System.currentTimeMillis();
+        System.out.println("Total time: " + (end - start) + " ms");
+    }
+}
